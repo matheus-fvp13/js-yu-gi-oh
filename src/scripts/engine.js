@@ -7,7 +7,7 @@ const state = {
     cardSprites: {
         avatar: document.getElementById("card-image"),
         name: document.getElementById("card-name"),
-        tipe: document.getElementById("card-type"),
+        type: document.getElementById("card-type"),
     },
     fieldCards: {
         player: document.getElementById("player-field-card"),
@@ -19,8 +19,8 @@ const state = {
 };
 
 const playerSides = {
-    player1: "player-field-card",
-    computer: "computer-field-card" 
+    player1: "player-cards",
+    computer: "computer-cards" 
 }
 
 const pathImages = "src/assets/icons/";
@@ -67,13 +67,20 @@ async function createCardImage(idCard, fieldSide) {
         cardImage.addEventListener("click", () => {
             setCardsField(cardImage.getAttribute("data-id"))
         });
+
+        cardImage.addEventListener("mouseover", () => {
+            drawSelectCard(idCard);
+        });
     }
 
-    cardImage.addEventListener("mouseover", () => {
-        drawSelectCard(idCard);
-    });
-
     return cardImage;
+}
+
+async function drawSelectCard(index) {
+    state.cardSprites.avatar.src = cardData[index].img;
+    state.cardSprites.name.innerText = cardData[index].name;
+    state.cardSprites.type.innerText = "Attribute: " + cardData[index].type;
+
 }
 
 async function drawCards(cardNumber, fieldSide) {
