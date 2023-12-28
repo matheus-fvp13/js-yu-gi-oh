@@ -22,7 +22,32 @@
     <title>Yu-Gi-Oh Jo-ken-po Edition</title>
 </head>
 <body>
-    <h1>Projeto criado!</h1>
+    
+    <div class="bg-video">
+        <video class="bg-video__video" autoplay loop muted>
+            <source src="./src/assets/video/yugi.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="container">
+        <div class="container__left">
+            <div class="score-box">
+                <span id="score-points">Win : 0 | Lose: 0</span>
+            </div>
+            <div class="menu-avatar">
+                <img id="card-image">
+            </div>
+            <div class="card-details">
+                <p id="card-name"></p>
+                <p id="card-type"></p>
+            </div>
+        </div>
+        <div class="conatiner__right">
+            <div class="card-box__container">
+
+            </div>
+        </div>
+    </div>
+
     <script src="./src/scripts/engine.js" defer></script>
 </body>
 </html>
