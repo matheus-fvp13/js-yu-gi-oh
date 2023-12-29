@@ -13,15 +13,16 @@ const state = {
         player: document.getElementById("player-field-card"),
         computer: document.getElementById("computer-field-card"),
     },
+    playerSides: {
+        player1: "player-cards",
+        player1Box: document.querySelector("#player-cards"),
+        computer: "computer-cards",
+        computerBox: document.querySelector("#computer-cards") 
+    },
     actions: {
         button: document.getElementById("next-duel")
     } 
 };
-
-const playerSides = {
-    player1: "player-cards",
-    computer: "computer-cards" 
-}
 
 const pathImages = "src/assets/icons/";
 const cardData = [
@@ -63,7 +64,7 @@ async function createCardImage(idCard, fieldSide) {
     cardImage.setAttribute("data-id", idCard);
     cardImage.classList.add("card");
 
-    if(fieldSide === playerSides.player1) {
+    if(fieldSide === state.playerSides.player1) {
         cardImage.addEventListener("click", () => {
             setCardsField(cardImage.getAttribute("data-id"))
         });
@@ -109,9 +110,19 @@ async function setCardsField(cardId) {
     await drawButton(duelResults);
 }
 
+async function removeAllCardsImages() {
+    let cards = state.playerSides.computerBox;
+    let imgElements = cards.querySelectorAll("img");
+    imgElements.forEach((img) => img.remove());
+
+    cards = state.playerSides.player1Box;
+    imgElements = cards.querySelectorAll("img");
+    imgElements.forEach((img) => img.remove());
+}
+
 function init() {
-    drawCards(5, playerSides.player1);
-    drawCards(5, playerSides.computer);
+    drawCards(5, state.playerSides.player1);
+    drawCards(5, state.playerSides.computer);
 }
 
 init();
